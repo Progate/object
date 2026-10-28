@@ -156,6 +156,8 @@ impl<T> ReadError<T> for Option<T> {
 #[cfg(all(
     unix,
     not(target_os = "macos"),
+    // Unix on WebAssembly (wasm32-browseros-linux-musl, wasm32-wali-linux-musl) runs wasm files.
+    not(target_family = "wasm"),
     target_pointer_width = "32",
     feature = "elf"
 ))]
